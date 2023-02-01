@@ -18,4 +18,11 @@ export class ResumeController {
     const data = this.resumeService.getUser(userId);
     return response.render(viewName, data);
   }
+
+  @Get('/resume3')
+  dynamicRenderByString(@Query('userId') userId, @Res() response: Response) {
+    const viewName = this.resumeService.getViewName();
+    const data = this.resumeService.getUser(userId);
+    return response.send('<h1>안녕하세요 jojoldu님</h1>');
+  }
 }
