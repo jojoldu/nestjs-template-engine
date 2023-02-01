@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Res } from '@nestjs/common';
+import { Controller, Get, Query, Render, Req, Res } from "@nestjs/common";
 import { Response } from 'express';
 import { ResumeService } from './ResumeService';
 
@@ -8,15 +8,14 @@ export class ResumeController {
 
   @Get('/resume1')
   @Render('resume/resume1')
-  getHello() {
+  staticRender() {
     return { message: 'Hello world!' };
   }
 
   @Get('/resume2')
-  root(@Res() res: Response) {
+  dynamicRender(@Query('userId') userId, @Res() response: Response) {
     const viewName = this.resumeService.getViewName();
-    return res.render(viewName, {
-      message: 'Hello world!, Resume2',
-    });
+    const data = this.resumeService.getUser(userId);
+    return response.render(viewName, data);
   }
 }
