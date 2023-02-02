@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Render, Req, Res } from "@nestjs/common";
+import { Controller, Get, Query, Render, Req, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { ResumeService } from './ResumeService';
 
